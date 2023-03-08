@@ -1,0 +1,90 @@
+# create db
+test> use customers
+switched to db customers
+
+
+# create collection
+customers> db.createCollection("info")
+{ ok: 1 }
+
+
+# add one
+customers> db.info.insertOne({"fname":"kian", "lname": "kiani", "nid": 1234, "gender": "male", "birthday": 901221})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64087ff74a2cbb881ba53c81")
+}
+
+
+# check
+customers> db.info.find()
+[
+  {
+    _id: ObjectId("64087ff74a2cbb881ba53c81"),
+    fname: 'kian',
+    lname: 'kiani',
+    nid: 1234,
+    gender: 'male',
+    birthday: 901221
+  }
+]
+
+
+# add many
+customers> db.info.insertMany([{"fname":"ali", "lname": "alavii", "nid": 5678, "gender": "male", "birthday": 050301}, {"fname": "nahid", "lname": "nahidi", "nid": 1111, "gender": "female", "birthday":160116},{"fname": "kimia", "lname": "jadui", "nid": 2222, "gender": "female", "birthday": 231010}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("640881e74a2cbb881ba53c82"),
+    '1': ObjectId("640881e74a2cbb881ba53c83"),
+    '2': ObjectId("640881e74a2cbb881ba53c84")
+  }
+}
+
+
+# update one
+customers> db.info.updateOne({"fname": "kimia"}, {$set: {"nid": 2000}})
+{
+    _id: ObjectId("640881e74a2cbb881ba53c84"),
+    fname: 'kimia',
+    lname: 'jadui',
+    nid: 2000,
+    gender: 'female',
+    birthday: 231010
+  }
+
+
+# update many
+customers> db.info.updateMany({ "nid": { $gt: 1500 }}, { $set: { "lname": "Ahmadi"} })
+
+
+# check
+customers> db.info.find()
+[
+  {
+    _id: ObjectId("640881e74a2cbb881ba53c82"),
+    fname: 'ali',
+    lname: 'Ahmadi',
+    nid: 5678,
+    gender: 'male',
+    birthday: 20673
+  },
+	{
+    _id: ObjectId("640881e74a2cbb881ba53c84"),
+    fname: 'kimia',
+    lname: 'Ahmadi',
+    nid: 2000,
+    gender: 'female',
+    birthday: 231010
+  }
+]
+
+
+# delete one
+customers> db.info.deleteOne({"fname": "kimia"})
+{ acknowledged: true, deletedCount: 1 }
+
+
+# delete many
+customers> db.info.deleteMany({"nid": {$gt: 1200}})
+{ acknowledged: true, deletedCount: 2 }
