@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('./partials/header.ejs') %>
+
+  <body>
+    <form class="d-flex" action="/submit" method="POST">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="username"
+        id="username"
+        name="username"
+      />
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="password"
+        id="password"
+        name="password"
+      />
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="email"
+        id="email"
+        name="email"
+      />
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="gender"
+        id="gender"
+        name="gender"
+      />
+      <button class="btn btn-outline-success" type="submit">Sign up</button>
+    </form>
+  </body>
+</html>

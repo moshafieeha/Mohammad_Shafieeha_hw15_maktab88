@@ -36,7 +36,6 @@ app.get("/profile/:uid", function (req, res) {
 // give value of searchbox and navigate result to another page
 app.post("/submit", (req, res) => {
   res.locals.title = "Search";
-
   // search function
   const result = products.filter((obj) => obj.name.includes(req.body.value));
   //lowercase??

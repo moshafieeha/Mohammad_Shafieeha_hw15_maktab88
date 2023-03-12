@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('./partials/header.ejs') %>
+  <body>
+    <div class="container card text-center mt-2">
+      <div class="card-header">Profile</div>
+      <div class="card-body center">
+        <div class="row">
+          <div class="col-md-3 mx-auto">
+            <ul>
+              <% for(let x=0; x < Object.keys(data).length; x++) { %>
+              <li><%= Object.keys(data)[x]%></li>
+              <p><%= Object.values(data)[x]%></p>
+              <% }%>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
